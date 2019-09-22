@@ -6,21 +6,21 @@ import (
 
 type handleFunc func(n string)
 
-func hello() func(string){
+func hello() handleFunc{
 	text := "Hello"
 	return func(s string) {
 		fmt.Println(text + " " + s)
 	}
 }
 
-func name(n string, next handleFunc) func(string){
+func name(n string, next handleFunc) handleFunc{
 	text := "my name is " + n
 	return func(s string) {
 		next(text + " " + s)
 	}
 }
 
-func company(next handleFunc) func(string) {
+func company(next handleFunc) handleFunc {
 	text := "from"
 	return func(s string) {
 		next(text + " " + s)
